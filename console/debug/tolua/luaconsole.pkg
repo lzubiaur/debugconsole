@@ -1,0 +1,13 @@
+$#include "debug/luaconsole.h"
+
+namespace pix2d_debug {
+
+class LuaConsole {
+    LuaConsole(void);
+    ~LuaConsole(void);
+    bool reloadLevel();
+    bool reloadLevel(const char *data);
+    void updateSpriteFrames(const char *plist_data, const char *texture_data);
+};
+
+}
