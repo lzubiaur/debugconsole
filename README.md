@@ -40,6 +40,7 @@ To add new commands:
 ## Requirements
 
 * cocos2d-x 2.0.4
+* lua api (provided with cocos2d-x)
 * tolua++ (provided with cocos2d-x)
 * python
 
