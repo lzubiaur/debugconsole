@@ -15,9 +15,8 @@ A simple cocos2d-x console to run remote lua scripts
 ...
 addChild(pix2d_console::LuaConsole::create());
 ```
-
 * Compile and launch your application to your device
-* Now you execute client/concli.py to access your game remolty
+* Now you can execute client/concli.py to access your game remolty
 
 # iOS devices
 
@@ -26,8 +25,7 @@ If your iPad/iPhone is attached to your computer via usb then start the usbmuxd 
 ```
 python tcprelay.py 8080
 ```
-
-## Add new commands
+## Adding new commands
 By now the console has only one simple but quite useful command to remolty update sprite-sheets.
 
 ```
@@ -37,7 +35,10 @@ To add new commands:
 * Implement the new commands in command.h and command.cpp
 * Edit command.pkg to reflect the new changes
 * run the tolua.py script
+
+```
     python tolua.py path-to-command.pkg
+```
 * Compile and re-launch the console
 * Edit concli.py to add your new commands
 
