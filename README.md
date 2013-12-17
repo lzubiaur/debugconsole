@@ -3,6 +3,8 @@ debugconsole
 
 A simple cocos2d-x console to run remote lua scripts
 
+## Description
+
 ## Installation and usage
 * Copy the 'console' folder to your project's source folder (e.g. Classes folder in xcode)
 * Edit console/command.cpp to integrate your code with the already available commands
@@ -15,13 +17,15 @@ addChild(pix2d_console::LuaConsole::create());
 ```
 
 * Compile and launch your application to your device
-* If your ios device is attached via usb then start the usbmuxd proxy
+* Now you execute client/concli.py to access your game remolty
+
+# iOS devices
+
+If your iPad/iPhone is attached to your computer via usb then start the usbmuxd proxy.
 
 ```
 python tcprelay.py 8080
 ```
-
-* Now run the concli.py script to 
 
 ## Add new commands
 By now the console has only one simple but quite useful command to remolty update sprite-sheets.
