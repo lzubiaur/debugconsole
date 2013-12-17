@@ -7,22 +7,21 @@ A simple cocos2d-x console to run remote lua scripts
 * Copy the 'console' folder to your project's source folder (e.g. Classes folder in xcode)
 * Edit console/command.cpp to integrate your code with the already available commands
 * Add a LuaConsole node to your cocos2d scene
-```
-    #include "console/luaconsole.h"
-    ...
-    addChild(pix2d_console::LuaConsole::create());
+```#include "console/luaconsole.h"
+...
+addChild(pix2d_console::LuaConsole::create());
 ```
 * Compile and launch your application to your device
 * If your ios device is attached via usb then start the usbmuxd proxy
 ```
-    python tcprelay.py 8080
+python tcprelay.py 8080
 ```
 * Now run the concli.py script to 
 
 ## Add new commands
 By now the console has only one simple but quite useful command to remolty update sprite-sheets.
 ```
-    ./concli.py --plist ../path-to-your-file.plist
+./concli.py --plist ../path-to-your-file.plist
 ```
 * Implement the new commands in command.h and command.cpp
 * Edit command.pkg to reflect the new changes
