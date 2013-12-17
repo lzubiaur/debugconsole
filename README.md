@@ -6,7 +6,7 @@ A simple cocos2d-x console to run remote lua scripts
 ## Installation and usage
 * Copy the 'console' folder to your project's source folder (e.g. Classes folder in xcode)
 * Edit console/command.cpp to integrate your code with the already available commands
-* Create and add a LuaConsole node to your scene
+* Add a LuaConsole node to your cocos2d scene
 ```
     #include "console/luaconsole.h"
     ...
