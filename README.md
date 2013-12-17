@@ -1,7 +1,7 @@
 debugconsole
 ============
 
-A simple cocos2d-x console for remote lua command
+A simple cocos2d-x console to run remote lua scripts
 
 ## Installation and usage
 * Copy the 'console' folder to your project's source folder (e.g. Classes folder in xcode)
