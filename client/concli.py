@@ -38,7 +38,7 @@ def main(argv=None):
 
     argv = (argv or sys.argv)[1:]
 
-    parser = argparse.ArgumentParser(usage=("usage: %(prog)s [plist | --plist | -p] [output | --output | -o]"))
+    parser = argparse.ArgumentParser(usage=("usage: %(prog)s [plist | --plist | -p]"))
 
     parser.add_argument("--plist", "-p",
         dest="plist_path",
@@ -136,10 +136,10 @@ texture = [[
 {}]]
 plist = [[
 {}]]
-v = pix2d_debug.LuaConsole:new()
+v = pix2d_console.Command:new()
 v:updateSpriteFrames(plist,texture)
 v:reloadLevel()
-""".format(sprite_base64,plist_base64)
+""".format(sprite_base64,plist_base64).encode('utf-8')
 
 if __name__ == "__main__":
     sys.exit(main())

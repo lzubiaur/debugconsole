@@ -23,43 +23,27 @@
  */
 
 /**
- * @file:   luaconsole.h
+ * @file:   forward.h
  * @author: Laurent Zubiaur
  * @brief:
  */
 
-#ifndef PIX2D_DEBUG_LUACONSOLE_H
-#define PIX2D_DEBUG_LUACONSOLE_H
+#ifndef PIX2D_CONSOLE_FORWARDS_H
+#define PIX2D_CONSOLE_FORWARDS_H
 
-#include "debug/forwards.h"
-#include "debug/console.h"
+/////////////////// Namespace ///////////////////
+#define NS_PIX2D_CONSOLE_BEGIN                     namespace pix2d_console {
+#define NS_PIX2D_CONSOLE_END                       }
+#define USING_NS_PIX2D_CONSOLE                     using namespace pix2d_console
 
-/// Forward declaration
-struct lua_State;
+NS_PIX2D_CONSOLE_BEGIN
 
-NS_PIX2D_DEBUG_BEGIN
+class DebugLayer;
+class DebugDraw;
+class DictMaker;
+class Console;
+class LuaConsole;
 
-class LuaConsole : public Console {
-public:
-    explicit LuaConsole();
-    virtual ~LuaConsole();
+NS_PIX2D_CONSOLE_END
 
-    CREATE_FUNC(LuaConsole);
-
-    /// Implement ServerSocket::handleRequest
-    virtual void handleRequest(const std::string &input, std::string &output);
-
-    /// Exposed methods to lua
-    bool reloadLevel();
-    bool reloadLevel(const char *data);
-    void updateSpriteFrames(const char *plist_data, const char *texture_data);
-
-protected:
-    void replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture);
-
-protected:
-    lua_State *L;
-};
-
-NS_PIX2D_DEBUG_END
-#endif // PIX2D_LUA_CONSOLE_H
+#endif // PIX2D_CONSOLE_FORWARDS_H

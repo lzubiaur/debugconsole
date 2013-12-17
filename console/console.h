@@ -31,12 +31,12 @@
 #ifndef PIX2D_DEBUG_CONSOLE_H
 #define PIX2D_DEBUG_CONSOLE_H
 
-#include "debug/forwards.h"
+#include "console/forwards.h"
 #include <netinet/in.h>
 #include <cocos2d.h>
 USING_NS_CC;
 
-NS_PIX2D_DEBUG_BEGIN
+NS_PIX2D_CONSOLE_BEGIN
 
 class Console : public CCNode {
 protected:
@@ -81,6 +81,6 @@ private:
     int m_server_port;
 };
 
-NS_PIX2D_DEBUG_END
+NS_PIX2D_CONSOLE_END
 
 #endif // PIX2D_DEBUG_CONSOLE_H

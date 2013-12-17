@@ -1,0 +1,13 @@
+$#include "console/command.h"
+
+namespace pix2d_console {
+
+class Command {
+    Command(void);
+    ~Command(void);
+    virtual bool reloadLevel();
+    virtual bool reloadLevel(const char *data);
+    void updateSpriteFrames(const char *plist_data, const char *texture_data);
+};
+
+}

@@ -28,7 +28,7 @@
  * @brief:
  */
 
-#include "debug/console.h"
+#include "console/console.h"
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -63,7 +63,7 @@
 #define LOG_ERROR(format, ...)      log("[ERROR] " format, ##__VA_ARGS__)
 #endif
 
-NS_PIX2D_DEBUG_BEGIN
+NS_PIX2D_CONSOLE_BEGIN
 
 Console::Console()
 : m_server_ip("0.0.0.0")
@@ -318,4 +318,4 @@ void Console::log(const char *format, ...)
     printf("Console: %s\n", buf);
 }
 
-NS_PIX2D_DEBUG_END
+NS_PIX2D_CONSOLE_END

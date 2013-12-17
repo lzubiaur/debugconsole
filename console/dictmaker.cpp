@@ -30,13 +30,13 @@
  * Modified and adapted by Laurent Zubiaur http://www.pix2d.com/
  */
 
-#include "debug/dictmaker.h"
+#include "console/dictmaker.h"
 
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
 
-NS_PIX2D_DEBUG_BEGIN
+NS_PIX2D_CONSOLE_BEGIN
 
 DictMaker::DictMaker()
 : m_eResultType(SAX_RESULT_NONE)
@@ -261,4 +261,4 @@ void DictMaker::textHandler(void *ctx, const char *ch, int len)
     pText->release();
 }
 
-NS_PIX2D_DEBUG_END
+NS_PIX2D_CONSOLE_END

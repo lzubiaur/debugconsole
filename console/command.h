@@ -23,27 +23,36 @@
  */
 
 /**
- * @file:   forward.h
+ * @file:   command.h
  * @author: Laurent Zubiaur
  * @brief:
  */
 
-#ifndef PIX2D_DEBUG_FORWARDS_H
-#define PIX2D_DEBUG_FORWARDS_H
+#ifndef PIX2D_CONSOLE_COMMAND_H
+#define PIX2D_CONSOLE_COMMAND_H
 
-/////////////////// Namespace ///////////////////
-#define NS_PIX2D_DEBUG_BEGIN                     namespace pix2d_debug {
-#define NS_PIX2D_DEBUG_END                       }
-#define USING_NS_PIX2D_DEBUG                     using namespace pix2d_debug
+#include "console/forwards.h"
 
-NS_PIX2D_DEBUG_BEGIN
+#include <cocos2d.h>
+USING_NS_CC;
 
-class DebugLayer;
-class DebugDraw;
-class DictMaker;
-class Console;
-class LuaConsole;
+NS_PIX2D_CONSOLE_BEGIN
 
-NS_PIX2D_DEBUG_END
+class Command {
+public:
+    explicit Command()
+    {}
+    virtual ~Command()
+    {}
 
-#endif // PIX2D_FORWARDS_H
+    /// Exposed methods (lua binding)
+    virtual bool reloadLevel();
+    virtual bool reloadLevel(const char *data);
+    void updateSpriteFrames(const char *plist_data, const char *texture_data);
+
+protected:
+    void replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture);
+};
+
+NS_PIX2D_CONSOLE_END
+#endif // PIX2D_CONSOLE_COMMAND_H

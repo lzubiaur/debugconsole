@@ -23,84 +23,34 @@
  */
 
 /**
- * @file:   luaconsole.cpp
+ * @file:   command.cpp
  * @author: Laurent Zubiaur
  * @brief:
  */
 
-#include "debug/luaconsole.h"
-#include "scene/levelloader.h"
-#include "debug/dictmaker.h"
-#include "debug/debuglayer.h"
-#include <fstream>
-
-#define LUA_LIB
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-}
-
-/// tolua++
-#include <tolua/tolua++.h>
-#include "debug/tolua/luaconsole.hpp"
-
+#include "console/command.h"
+#include "console/dictmaker.h"
 #include <cocos2dx/support/base64.h>
+
+/// Remove following includes with yours
+#include "scene/levelloader.h"
+#include "debug/debuglayer.h"
 
 USING_NS_PIX2D;
 
-NS_PIX2D_DEBUG_BEGIN
+NS_PIX2D_CONSOLE_BEGIN
 
-LuaConsole::LuaConsole()
+bool Command::reloadLevel()
 {
-    /// Create the lua state object
-    L = luaL_newstate();
-
-    /// Load Lua libraries
-    luaL_openlibs(L);
-
-    /// Load tolua binding packages
-    tolua_luaconsole_open(L);
-}
-
-LuaConsole::~LuaConsole()
-{
-    lua_close(L);
-}
-
-void LuaConsole::handleRequest(const std::string &input, std::string &output)
-{
-    /// std::cout << input << std::endl;
-    output.append("ok");
-
-    if (input.length() < 1) {
-        output = std::string("ERROR: Lua script is empty.");
-        return ;
-    }
-
-    if (luaL_loadstring(L, input.c_str())) {
-        output = std::string(lua_tostring(L, -1));
-        CCLOG("Lua error: %s", output.c_str());
-        return;
-    }
-
-    if ( lua_pcall(L, 0, LUA_MULTRET, 0) != 0) {
-        output = std::string(lua_tostring(L, -1));
-        CCLOG("Lua error: %s", output.c_str());
-    }
-
-    std::cout << output << std::endl;
-}
-
-bool LuaConsole::reloadLevel()
-{
+    /// Replace following code with your code to reload the level
     if (CCScene *scene = LevelLoader::createWithData(DebugSettings::getInstance()->levelData.c_str()))
         CCDirector::sharedDirector()->replaceScene(scene);
     return true;
 }
 
-bool LuaConsole::reloadLevel(const char *data)
+bool Command::reloadLevel(const char *data)
 {
+    /// Replace following code with your code to reload the level
     if (CCScene *scene = LevelLoader::createWithData(data)) {
         CCDirector::sharedDirector()->replaceScene(scene);
         DebugSettings::getInstance()->levelData = std::string(data);
@@ -109,7 +59,7 @@ bool LuaConsole::reloadLevel(const char *data)
 }
 
 /** Original code from CCSpriteFrameCache::addSpriteFramesWithDictionary */
-void LuaConsole::replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture)
+void Command::replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture)
 {
     CCDictionary *metadataDict = (CCDictionary*)pDict->objectForKey("metadata");
     CCDictionary *framesDict = (CCDictionary*)pDict->objectForKey("frames");
@@ -129,10 +79,10 @@ void LuaConsole::replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture)
         std::string spriteFrameName = pElement->getStrKey();
 
         /*
-        if (CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName.c_str()))
-            continue;
-        */
-        
+         if (CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName.c_str()))
+         continue;
+         */
+
         CCRect frame = CCRectFromString(frameDict->valueForKey("frame")->getCString());
         bool rotated = false;
 
@@ -153,7 +103,7 @@ void LuaConsole::replaceSpriteFrames(CCDictionary *pDict, CCTexture2D *pTexture)
     }
 }
 
-void LuaConsole::updateSpriteFrames(const char *pPlist, const char *pTexture)
+void Command::updateSpriteFrames(const char *pPlist, const char *pTexture)
 {
     char *plist_data;
     int plist_data_len = base64Decode((unsigned char*)pPlist, strlen(pPlist), (unsigned char**)&plist_data);
@@ -171,9 +121,9 @@ void LuaConsole::updateSpriteFrames(const char *pPlist, const char *pTexture)
     texture->initWithImage(img);
 
     replaceSpriteFrames(dict, texture);
-
+    
     delete plist_data;
     delete texture_data;
 }
 
-NS_PIX2D_DEBUG_END
+NS_PIX2D_CONSOLE_END

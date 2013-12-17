@@ -33,12 +33,12 @@
 #ifndef PIX2D_DEBUG_DICTMAKER_H
 #define PIX2D_DEBUG_DICTMAKER_H
 
-#include "debug/forwards.h"
+#include "console/forwards.h"
 #include <stack>
 #include <cocos2d.h>
 USING_NS_CC;
 
-NS_PIX2D_DEBUG_BEGIN
+NS_PIX2D_CONSOLE_BEGIN
 
 typedef enum
 {
@@ -85,5 +85,5 @@ private:
     std::stack<CCSAXState>  m_tStateStack;
 };
 
-NS_PIX2D_DEBUG_END
+NS_PIX2D_CONSOLE_END
 #endif // PIX2D_DEBUG_DICTMAKER_H
