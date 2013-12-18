@@ -1,7 +1,7 @@
 debugconsole
 ============
 
-A simple cocos2d-x console to run remote lua scripts
+A simple cocos2d-x console for running remote lua scripts
 
 ## Description
 
