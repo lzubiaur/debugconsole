@@ -66,4 +66,4 @@ LuaConsole::create("0.0.0.0",8080);
 MIT License
 
 tcprelay.py and usbmux.py are part of the awesome libusbmuxd library and are licensed under the GNU Lesser General Public
-License. Please check the libusbmuxd's github repository [a link](https://github.com/libimobiledevice/libusbmuxd).
+License. Please have a look at the [libusbmuxd's github repository](https://github.com/libimobiledevice/libusbmuxd).
