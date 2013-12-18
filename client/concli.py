@@ -90,13 +90,13 @@ class Command(object):
         return resp
 
     def run(self):
-        port = self.config.getint("usbmuxd","port")
-        addr = self.config.get("usbmuxd","ip")
+        port = self.config.getint("usbmuxd","console.port")
+        addr = self.config.get("usbmuxd","console.ip")
 
         # Connect to the remote device
         code = self.sock.connect_ex((addr, port))
         if not code == 0:
-            print "Can't connect to device ({}). Please check that the usbmuxd proxy is running.".format(os.strerror(code))
+            print "Can't connect to device ({}). Please check that the usbmuxd proxy is running if the device is attached via usb.".format(os.strerror(code))
             return
         # Send the command message
         self.send();
