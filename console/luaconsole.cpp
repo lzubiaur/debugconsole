@@ -45,20 +45,50 @@ extern "C" {
 NS_PIX2D_CONSOLE_BEGIN
 
 LuaConsole::LuaConsole()
+: Console()
+, L(NULL)
+{}
+
+LuaConsole::LuaConsole(const char *ip, int port)
+: Console(ip, port)
+, L(NULL)
+{}
+
+LuaConsole::~LuaConsole()
 {
+    if (L) lua_close(L);
+}
+
+LuaConsole *LuaConsole::create(const char *ip, int port)
+{
+    LuaConsole *ptr = new LuaConsole(ip, port);
+    if (ptr && ptr->init()) {
+        ptr->autorelease();
+        return ptr;
+    }
+    delete ptr;
+    return 0;
+}
+
+bool LuaConsole::init()
+{
+    if (! Console::init()) return false;
+
     /// Create the lua state object
     L = luaL_newstate();
+
+    if (! L) {
+        CCLOGERROR("FATAL: Can't allocate the new Lua state");
+        return false;
+    }
 
     /// Load Lua libraries
     luaL_openlibs(L);
 
     /// Load tolua binding packages
     tolua_command_open(L);
-}
 
-LuaConsole::~LuaConsole()
-{
-    lua_close(L);
+    return true;
 }
 
 void LuaConsole::handleRequest(const std::string &input, std::string &output)

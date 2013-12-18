@@ -42,9 +42,13 @@ NS_PIX2D_CONSOLE_BEGIN
 class LuaConsole : public Console {
 public:
     explicit LuaConsole();
+    LuaConsole(const char *ip, int port);
     virtual ~LuaConsole();
 
+    virtual bool init();
+
     CREATE_FUNC(LuaConsole);
+    static LuaConsole *create(const char *ip, int port);
 
     /// Implement ServerSocket::handleRequest
     virtual void handleRequest(const std::string &input, std::string &output);
