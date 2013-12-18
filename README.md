@@ -27,7 +27,7 @@ The server part is a cocos2dx CCNode listenning on a network socket for lua scri
 addChild(pix2d_console::LuaConsole::create());
 ```
 * Compile and launch your application
-* Now you can execute client/concli.py to access your game remotly
+* Now you can execute client/concli.py to access your game remotely
 
 # iOS devices
 
@@ -37,7 +37,7 @@ If your iPad/iPhone is attached to your computer via usb then start the usbmuxd 
 python tcprelay.py 8080
 ```
 ## Adding new commands
-By now the console has only one simple but quite useful command to remolty update sprite-sheets.
+By now the console has only one simple but quite useful command to remotely update sprite-sheets.
 
 ```
 ./concli.py --plist ../path-to-your-file.plist
