@@ -55,13 +55,15 @@ To add new commands:
 
 ## Configuration
 Both console and client's ip and port can be configured. By default the port 8080 is used.
-The python script can be configured by editing the concly.conf file. 
 * Edit concly.conf to configure the client's network parameters
-* Create the 
+* The lua console's ip and port can be provided to the create method
 
+```
+LuaConsole::create("0.0.0.0",8080);
+```
 ## License
 
 MIT License
 
-tcprelay.py and usbmux.py are thrid-party library and are licensed under the GNU Lesser General Public
-License. Please check the github repository at https://github.com/libimobiledevice/libusbmuxd.
+tcprelay.py and usbmux.py are part of the awesome libusbmuxd library and are licensed under the GNU Lesser General Public
+License. Please check the libusbmuxd's github repository [a link](https://github.com/libimobiledevice/libusbmuxd).
