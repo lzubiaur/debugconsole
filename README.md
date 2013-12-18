@@ -5,9 +5,9 @@ A simple cocos2d-x console for running remote lua scripts
 
 ## Description
 
-debugconsole is a simple network server-client implementation which allows remote access to a cocos2dx application for development/debugging purpose. The goal is to be able to remotely run lua scripts at runtime and to avoid  compiling/packaging/launchimg the application when it's not neceserry (e.g. updating a resource like spritesheet, sounds...).
+debugconsole is a simple server-client implementation which allows remote access to a cocos2dx application for development/debugging purpose. The goal is to be able to remotely run lua scripts at runtime and to avoid  compiling/packaging/launchimg the application when it's not neceserry (e.g. updating a resource like spritesheet, sounds...).
 
-The server part is a cocos2dx CCNode listenning for lua script requests on a network socket. The client part is a simple python script which will construct the lua script and send it to the console.
+The server part is a cocos2dx CCNode listenning on a network socket for lua script requests. The client part is a simple python script which will construct the lua script and send it to the console.
 
 ## Requirements
 
