@@ -43,8 +43,8 @@ By now the console has only one simple but quite useful command to remolty updat
 ./concli.py --plist ../path-to-your-file.plist
 ```
 To add new commands:
-* Implement the new commands in command.h and command.cpp
-* Edit command.pkg to reflect the new changes
+* Add new command methods in command.h and command.cpp
+* Edit command.pkg to reflect the changes (see [tolua++ doc](http://www.codenix.com/~tolua/tolua++.html))
 * run the tolua.py script
 
 ```
