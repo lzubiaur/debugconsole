@@ -65,7 +65,7 @@ public:
 protected:
     /** @brief Send raw data */
     ssize_t send(int sock, size_t len, const void *msg);
-    /** @brief Receave raw data  */
+    /** @brief Read raw data from the socket. @warning Will alocate exactly 'len' bytes and will NOT set the null terminator. */
     ssize_t read(int sock, size_t len, void **msg);
 
     void log(const char *format, ...);

@@ -223,7 +223,8 @@ void Console::update(float dt)
 
     /// Read REQUEST content
     char *msg = NULL;
-    if (read(sock, header->length, (void**)&msg) != header->length) {
+    size_t len = read(sock, header->length, (void**)&msg);
+    if (len != header->length) {
         LOG_ERROR("Can't read request content from client: %s", strerror(errno));
         if (::close(sock) < 0)
             LOG_ERROR("Can't close the client connection: %s", strerror(errno));
@@ -234,7 +235,7 @@ void Console::update(float dt)
 
     /// Invoke the callback method
     std::string output;
-    std::string input(msg);
+    std::string input(msg,len);
     handleRequest(input, output);
 
     /// Send RESPONSE
