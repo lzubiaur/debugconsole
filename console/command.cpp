@@ -51,10 +51,13 @@ bool Command::reloadLevel()
 bool Command::reloadLevel(const char *data)
 {
     /// Replace following code with your code to reload the level
-    if (CCScene *scene = LevelLoader::createWithData(data)) {
+    char *decoded = nullptr;
+    base64Decode((unsigned char*)data, strlen(data), (unsigned char**)&decoded);
+    if (CCScene *scene = LevelLoader::createWithData(decoded)) {
         CCDirector::sharedDirector()->replaceScene(scene);
-        DebugSettings::getInstance()->levelData = std::string(data);
+        DebugSettings::getInstance()->levelData = std::string(decoded);
     }
+    delete decoded;
     return true;
 }
 

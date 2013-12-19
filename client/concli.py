@@ -45,10 +45,19 @@ def main(argv=None):
         type=unicode,
         help="Sprites sheet plist path")
 
+    parser.add_argument("--json", "-j",
+            dest="json_path",
+            type=unicode,
+            help="level's json data")
+
     options, args = parser.parse_known_args(argv)
 
     if options.plist_path:
         UpdateSpritesCmd(options.plist_path,config).run()
+    
+    if options.json_path:
+        ReloadLevelCmd(options.json_path,config).run()
+    
     return 0
 
 class Command(object):
@@ -73,12 +82,12 @@ class Command(object):
         total_sent = 0
         while True:
             sent = self.sock.send(packet[total_sent:])
-            print '{} byte(s) sent'.format(sent)
             if sent == 0:
                 raise RuntimeError("Can't send message. Please ensure that the remote application is running.")
             total_sent = total_sent + sent
             if total_sent == packet_len:
                 break
+        print '{} byte(s) sent'.format(total_sent)
 
     def recv(self):
         resp = ''
@@ -110,9 +119,23 @@ class Command(object):
         self.sock.close()
         # Print the response message 
         print 'Response: ' + resp
+
+
+class ReloadLevelCmd(Command):
+    def __init__(self,json_path,config):
+        super(ReloadLevelCmd,self).__init__(config)
+        # base64 encode the json file
+        with open(json_path, 'r') as f:
+            json_base64 = base64.encodestring(f.read())
+        f.closed
+        self.msg = """-- Lua script
+data = [[
+{}]]
+v = pix2d_console.Command:new()
+v:reloadLevel(data)
+""".format(json_base64).encode('utf-8')
         
 class UpdateSpritesCmd(Command):
-    
     def __init__(self,plist_path,config):
         super(UpdateSpritesCmd,self).__init__(config)
 
