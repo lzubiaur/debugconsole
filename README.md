@@ -37,13 +37,16 @@ If your iPad/iPhone is attached to your computer via usb then start the usbmuxd 
 python tcprelay.py 8080
 ```
 ## Adding new commands
-By now the console has only one simple but quite useful command to remotely update sprite-sheets.
+By now only two commands are implemented:
+* Reload level data
+* Reload sprite sheet
 
 ```
 ./concli.py --plist ../path-to-your-file.plist
+./concli.py --json ../path-to-your-level-data.json
 ```
-To add new commands:
-* Add new command methods in command.h and command.cpp
+New commands can easily be added:
+* Implement new command methods in command.h and command.cpp
 * Edit command.pkg to reflect the changes (see [tolua++ doc](http://www.codenix.com/~tolua/tolua++.html))
 * run the tolua.py script
 
